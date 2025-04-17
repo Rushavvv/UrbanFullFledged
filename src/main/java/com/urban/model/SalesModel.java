@@ -1,7 +1,6 @@
 package com.urban.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class SalesModel {
 	private int salesId;

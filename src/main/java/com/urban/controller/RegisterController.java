@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import com.urban.model.UserModel;
 import com.urban.service.RegisterService;
+import com.urban.util.PasswordUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -40,11 +41,14 @@ public class RegisterController extends HttpServlet {
 			UserModel userModel = extractUserModel(req);
 			Boolean isAdded = registerService.addUser(userModel);
 
-			if (isAdded == null) {
+			if (isAdded == null){
 				handleError(req, resp, "Our server is under maintenance. Please try again later!");
 
-			} else {
+			} else if(!isAdded){
 				handleError(req, resp, "Could not register your account. Please try again later!");
+			}else {
+			//Upon successful registration
+			resp.sendRedirect(req.getContextPath() + "/login.jsp");
 			}
 		} catch (Exception e) {
 			handleError(req, resp, "An unexpected error occurred. Please try again later!");
@@ -62,13 +66,16 @@ public class RegisterController extends HttpServlet {
 
 		String password = req.getParameter("password");
 		String retypePassword = req.getParameter("retypePassword");
-//
-//		if (password == null || !password.equals(retypePassword)) {
-//			throw new Exception("Passwords do not match or are invalid.");
-//		}
-//		
-		return new UserModel(number, userName, email, role, password, dob);	
+		
+		if (password == null || !password.equals(retypePassword)) {
+			throw new Exception("Passwords do not match or are invalid.");
+			
 		}
+		
+		password = PasswordUtil.encrypt(userName, password);
+		
+		return new UserModel(number, userName, email, gender, role, password, dob);	
+		} 
 	
 		
 	private void handleError(HttpServletRequest req, HttpServletResponse resp, String message)

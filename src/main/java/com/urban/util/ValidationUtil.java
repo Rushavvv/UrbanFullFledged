@@ -1,6 +1,6 @@
-package com.urban.controller;
+package com.urban.util;
 
-public class Validation {
+public class ValidationUtil {
 	/**
      * Validates if the camera ID is within the range of 100000 to 999999.
      *
@@ -167,7 +167,7 @@ public class Validation {
      * @param value the value to check
      * @return true if the value is empty or null, false otherwise
      */
-    public static boolean IsEmpty(String value) {
+    public boolean IsEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }
 }

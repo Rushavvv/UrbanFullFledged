@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +11,24 @@
 </head>
 <body>
     <div class="login-container">
+    <%
+		String errorMessage = (String) request.getAttribute("error");
+		String successMessage = (String) request.getAttribute("success");
+
+		if (errorMessage != null && !errorMessage.isEmpty()) {
+			out.println("<p class=\"error-message\">" + errorMessage + "</p>");
+		}
+
+		if (successMessage != null && !successMessage.isEmpty()) {
+		%>
+		<p class="success-message"><%=successMessage%></p>
+		<%
+		}
+		%>
         <h1>Login</h1>
-		<form>
-            <input type="text" placeholder="Username" required>
-            <input type="password" placeholder="Password" required>
+		<form action="${pageContext.request.contextPath}/login" method="post">
+            <input type="text" name = "userName" placeholder="Username" required>
+            <input type="password" name = "password" placeholder="Password" required>
             <button type="submit">Login</button>
             <h3>Don't have an account? <a href="${pageContext.request.contextPath}/register">Register</a> </h3>             
         </form>

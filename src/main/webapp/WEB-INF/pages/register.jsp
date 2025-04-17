@@ -19,17 +19,18 @@
             </div>
             <div class="form-group">
                 <input type="password" name="password" placeholder="Password" required>
-                <input type="tel" name="userNumber" placeholder="userNumber" required>
+                <input type="password" name="retypePassword" placeholder="Retype Password" required>
             </div>
             <div class="form-group">
-                <input type="date" name="dob" required>
-                <select name="gender" required>
+                <input type="tel" name="userNumber" placeholder="Phone Number" required>
+                <input type="date" name="dob" required>          
+            </div>
+            <select class = "dropDown" name="gender" required>
                     <option value="" disabled selected>Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
-                </select>
-            </div>
+             </select>
             <input type="submit" value="Register">
         </form>
     </div>

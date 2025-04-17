@@ -26,7 +26,7 @@ body {
 }
 
 .name{
-	margin-left: 1050px;
+	margin-left: 1280px;
 	font-size: 50px;
 	color: white;
 	font-family: Didot, serif;
@@ -39,7 +39,7 @@ nav {
     align-items: center;
     position: relative;
     margin-bottom: 80px;
-    margin-left:30px;
+    margin-left:50px;
 }
 
 nav a {
@@ -132,9 +132,10 @@ nav a {
 }
 
 .second-container h1{
+	display: flex;
     margin-top: 130px;
     color: black;
-    margin-left: -650px;
+    margin-left: 17%;
     font-family: Garamond, serif;
 }
 
@@ -153,7 +154,7 @@ nav a {
 }
 
 .footer-logo{
-    margin-left: 790px;
+    margin-left: 900px;
     background-repeat: no-repeat;
     background-size: contain;
     width: 150px;

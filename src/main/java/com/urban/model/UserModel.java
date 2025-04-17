@@ -8,6 +8,7 @@ public class UserModel {
 	private String userName;
 	private String userEmail;
 	private String role;
+	private String gender;
 	private LocalDate dob;
 	private String password;
 	
@@ -15,11 +16,17 @@ public class UserModel {
 		
 	}
 	
-	public UserModel(String userNumber, String userName, String userEmail, String role, String password, LocalDate dob ) {
+	public UserModel(String username, String pasword) {
+		this.userName = username;
+		this.password = pasword;
+	}
+	
+	public UserModel(String userNumber, String userName, String userEmail, String gender, String role, String password, LocalDate dob ) {
 		super();
 		this.userNumber = userNumber;
 		this.userName = userName;
 		this.userEmail = userEmail;
+		this.gender = gender;
 		this.role = role;
 		this.password = password;
 		this.dob = dob;
@@ -59,6 +66,14 @@ public class UserModel {
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getRole() {
