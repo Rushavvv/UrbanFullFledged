@@ -37,6 +37,8 @@ public class AuthenticationFilter implements Filter {
 		// Cast the request and response to HttpServletRequest and HttpServletResponse
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
+		String contextPath = req.getContextPath();
+		String username = (String) SessionUtil.getAttribute(req, "userName");
 
 		// Get the requested URI
 		String uri = req.getRequestURI();
@@ -47,8 +49,15 @@ public class AuthenticationFilter implements Filter {
 		}
 
 		// Get the session and check if user is logged in
-		boolean isLoggedIn = SessionUtil.getAttribute(req, "username") != null;
+		boolean isLoggedIn = SessionUtil.getAttribute(req, "userName") != null;
 
+		if (uri.equals(contextPath + "/dashboard")) {
+	        if (isLoggedIn || "sulav".equals(username)) {
+	            res.sendRedirect(req.getContextPath() + "/dashboard");
+	            return;
+	        }
+	    }
+		
 		if (!isLoggedIn) {
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 				chain.doFilter(request, response);
