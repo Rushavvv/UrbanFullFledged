@@ -60,6 +60,28 @@ public class LoginService {
 
 		return false;
 	}
+	
+	public String getUserRole(String username) {
+	    if (isConnectionError) {
+	        System.out.println("Connection Error!");
+	        return null;
+	    }
+
+	    String query = "SELECT role FROM User WHERE userName = ?";
+	    try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
+	        stmt.setString(1, username);
+	        ResultSet result = stmt.executeQuery();
+
+	        if (result.next()) {
+	            return result.getString("role");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
+
 
 	/**
 	 * Validates the password retrieved from the database.
@@ -73,12 +95,6 @@ public class LoginService {
 	private boolean validatePassword(ResultSet result, UserModel userModel) throws SQLException {
 		String dbUsername = result.getString("userName");
 		String dbPassword = result.getString("password");
-		
-		System.out.println(dbUsername);
-		System.out.println(dbPassword);
-		System.out.println(PasswordUtil.decrypt(dbPassword, dbUsername).equals(userModel.getPassword()));
-		
-
 		return dbUsername.equals(userModel.getUserName())
 				&& PasswordUtil.decrypt(dbPassword, dbUsername).equals(userModel.getPassword());
 	}

@@ -42,17 +42,20 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String username = req.getParameter("userName");
 		String password = req.getParameter("password");
+		String userrole = loginService.getUserRole(username);
+		
 
 		if (!validationUtil.IsEmpty("userName") && !validationUtil.IsEmpty("password")) {
 
 			UserModel userModel = new UserModel(username, password);
 			Boolean loginStatus = loginService.loginUser(userModel);
 
+
 			if (loginStatus != null && loginStatus) {
 				SessionUtil.setAttribute(req, "userName", username);
-				if (username.equals("admin")) {
-					CookiesUtil.addCookie(resp, "role", "admin", 5 * 30);
-					resp.sendRedirect(req.getContextPath() + "/dashboard"); // Redirect to /home
+				if ("admin".equalsIgnoreCase(userrole)) {
+				    CookiesUtil.addCookie(resp, "role", "admin", 5 * 30);
+				    resp.sendRedirect(req.getContextPath() + "/dashboard"); // Redirect to /dashboard
 				} else {
 					CookiesUtil.addCookie(resp, "role", "user", 5 * 30);
 					resp.sendRedirect(req.getContextPath() + "/home"); // Redirect to /home

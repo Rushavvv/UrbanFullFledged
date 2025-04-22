@@ -16,9 +16,23 @@ public class UserModel {
 		
 	}
 	
+	public UserModel(String username, String pasword, String role) {
+		this.userName = username;
+		this.password = pasword;
+		this.role = role;
+	}
+	
 	public UserModel(String username, String pasword) {
 		this.userName = username;
 		this.password = pasword;
+	}
+	
+	public UserModel(int userId, String userName, String userNumber, String userEmail, String gender) {
+		this.userId = userId;
+		this.userName = userName; 
+		this.userNumber = userNumber; 
+		this.userEmail = userEmail;
+		this.gender = gender;
 	}
 	
 	public UserModel(String userNumber, String userName, String userEmail, String gender, String role, String password, LocalDate dob ) {

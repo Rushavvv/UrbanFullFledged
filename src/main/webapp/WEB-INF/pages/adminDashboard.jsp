@@ -25,39 +25,37 @@
         <div class="logo"></div>
     </nav>
     
-    <h1 class="activity"> Recent Activity </h1>
-    <div class="stats-cards">
-      <div class="stat-card">
-        <h3>TOTAL USERS</h3>
-        <div class="value">2,543</div>
-        <div class="trend up">
-          <span>12% from last month</span>
+    <div class="stats">
+      <h1 class="activity"> Recent Activity </h1>
+      <div class="stats-cards">
+        <div class="stat-card">
+          <h3>TOTAL USERS</h3>
+          <div class="value">2,543</div>
+          <div class="trend up">
+            <span>12% from last month</span>
+            <img class="image2" src="${pageContext.request.contextPath}/resources/images/dashboardImg1.jpg" alt="Camera2">
+          </div>
         </div>
-      </div>
-      
-      <div class="stat-card">
-        <h3>TOTAL REVENUE</h3>
-        <div class="value">$45,243</div>
-        <div class="trend up">
-          <span>8% from last month</span>
+        
+        <div class="stat-card">
+          <h3>TOTAL REVENUE</h3>
+          <div class="value">$45,243</div>
+          <div class="trend up">
+            <span>8% from last month</span>
+            <img class="image1" src="${pageContext.request.contextPath}/resources/images/dashboardImg2.jpg" alt="Camera2">
+          </div>
         </div>
-      </div>
-      
-      <div class="stat-card">
-        <h3>ACTIVE PRODUCTS</h3>
-        <div class="value">156</div>
-        <div class="trend down">
-          <span>3% from last month</span>
+        
+        <div class="stat-card">
+          <h3>ACTIVE PRODUCTS</h3>
+          <div class="value">156</div>
+          <div class="trend down">
+            <span>3% from last month</span>
+            <img class="image3" src="${pageContext.request.contextPath}/resources/images/dashboardImg3.jpg" alt="Camera2">
+          </div>
         </div>
-      </div>
-      
-      <div class="stat-card">
-        <h3>PENDING ORDERS</h3>
-        <div class="value">24</div>
-        <div class="trend up">
-          <span>18% from last month</span>
-        </div>
-      </div>
+        
+        
     </div>
     
     <div class="section-title">
@@ -72,7 +70,6 @@
             <th>User</th>
             <th>Email</th>
             <th>Role</th>
-            <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -81,7 +78,6 @@
             <td>John Doe</td>
             <td>john.doe@example.com</td>
             <td>Admin</td>
-            <td><span class="status active">Active</span></td>
             <td>
               <div class="action-buttons">
                 <button class="btn">Edit</button>
@@ -93,7 +89,6 @@
             <td>Jane Smith</td>
             <td>jane.smith@example.com</td>
             <td>Manager</td>
-            <td><span class="status active">Active</span></td>
             <td>
               <div class="action-buttons">
                 <button class="btn">Edit</button>
@@ -105,7 +100,6 @@
             <td>Robert Johnson</td>
             <td>robert.j@example.com</td>
             <td>User</td>
-            <td><span class="status pending">Pending</span></td>
             <td>
               <div class="action-buttons">
                 <button class="btn">Edit</button>
@@ -117,7 +111,6 @@
             <td>Lisa Brown</td>
             <td>lisa.brown@example.com</td>
             <td>User</td>
-            <td><span class="status inactive">Inactive</span></td>
             <td>
               <div class="action-buttons">
                 <button class="btn">Edit</button>
@@ -129,7 +122,6 @@
             <td>Michael Wilson</td>
             <td>michael.w@example.com</td>
             <td>Editor</td>
-            <td><span class="status active">Active</span></td>
             <td>
               <div class="action-buttons">
                 <button class="btn">Edit</button>
@@ -140,6 +132,7 @@
         </tbody>
       </table>
     </div>
+  </div>
 
 </body>
 

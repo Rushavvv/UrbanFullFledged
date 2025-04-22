@@ -48,7 +48,7 @@ public class RegisterController extends HttpServlet {
 				handleError(req, resp, "Could not register your account. Please try again later!");
 			}else {
 			//Upon successful registration
-			resp.sendRedirect(req.getContextPath() + "/login.jsp");
+			resp.sendRedirect(req.getContextPath() + "/login");
 			}
 		} catch (Exception e) {
 			handleError(req, resp, "An unexpected error occurred. Please try again later!");
@@ -62,7 +62,7 @@ public class RegisterController extends HttpServlet {
 		LocalDate dob = LocalDate.parse(req.getParameter("dob"));
 		String gender = req.getParameter("gender");
 		String email = req.getParameter("email");
-		String role = req.getParameter("role");
+		String role = "user";
 
 		String password = req.getParameter("password");
 		String retypePassword = req.getParameter("retypePassword");

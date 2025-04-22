@@ -2,6 +2,7 @@ package com.urban.filter;
 
 import java.io.IOException;
 
+import com.urban.service.LoginService;
 import com.urban.util.SessionUtil;
 
 import jakarta.servlet.Filter;
@@ -14,7 +15,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebFilter(asyncSupported = true, urlPatterns = { "/*" })
+@WebFilter(asyncSupported = true, urlPatterns = { "/" })
 public class AuthenticationFilter implements Filter {
 
 	private static final String LOGIN = "/login";
@@ -23,6 +24,11 @@ public class AuthenticationFilter implements Filter {
 	private static final String ROOT = "/";
 	private static final String JPG = ".jpg";
 	private static final String PNG = ".png";
+	private static final String WEBP = ".webp";
+	private static final String DASHBOARD = "/dashboard";
+	private LoginService loginService;
+
+
 
 
 	@Override
@@ -37,13 +43,13 @@ public class AuthenticationFilter implements Filter {
 		// Cast the request and response to HttpServletRequest and HttpServletResponse
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
+		String username = req.getParameter("userName");
 		String contextPath = req.getContextPath();
-		String username = (String) SessionUtil.getAttribute(req, "userName");
-
+//		String userRole = loginService.getUserRole(username);
 		// Get the requested URI
 		String uri = req.getRequestURI();
 
-		if (uri.endsWith(".css") || uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(JPG) || uri.endsWith(PNG)) {
+		if (uri.endsWith(".css") || uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(JPG) || uri.endsWith(PNG) || uri.endsWith(WEBP)) {
 			chain.doFilter(request, response);
 			return;
 		}
@@ -51,13 +57,12 @@ public class AuthenticationFilter implements Filter {
 		// Get the session and check if user is logged in
 		boolean isLoggedIn = SessionUtil.getAttribute(req, "userName") != null;
 
-		if (uri.equals(contextPath + "/dashboard")) {
-	        if (isLoggedIn || "sulav".equals(username)) {
-	            res.sendRedirect(req.getContextPath() + "/dashboard");
-	            return;
-	        }
-	    }
-		
+//		if(userRole.equals("admin")) {
+//			res.sendRedirect(req.getContextPath() + DASHBOARD);
+//		}else {
+//			res.sendRedirect(req.getContextPath() + LOGIN);
+//		}
+//		
 		if (!isLoggedIn) {
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 				chain.doFilter(request, response);
