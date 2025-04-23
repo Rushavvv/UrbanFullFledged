@@ -7,23 +7,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 		 href="${pageContext.request.contextPath}/css/adminDashboard.css">
+<link rel="stylesheet" type="text/css"
+		 href="${pageContext.request.contextPath}/css/footer.css">
+	<link rel="stylesheet" type="text/css"
+		 href="${pageContext.request.contextPath}/css/header.css">
 </head>
 <body>
-  	
-    <nav>
-        <div class="dropdown">
-            <button class="dropbtn">☰ Menu</button>
-            <div class="dropdown-content">
-                <a href="#">Option 1</a>
-                <a href="#">Option 2</a>
-                <a href="#">Option 3</a>
-            </div>
-        </div>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <div class="logo"></div>
-    </nav>
+    <jsp:include page="header.jsp" />
     
     <div class="stats">
       <h1 class="activity"> Recent Activity </h1>
@@ -136,13 +126,5 @@
 
 </body>
 
-<footer class="footer">
-    <div class="footer-container">
-	      <div class="footer-logo">
-	      </div>
-	    <div class="footer-bottom">
-	      <p>&copy; 2025 Urban. All rights reserved.</p>
-	    </div>
-    </div>
-</footer>
+ <jsp:include page="footer.jsp" />
 </html>

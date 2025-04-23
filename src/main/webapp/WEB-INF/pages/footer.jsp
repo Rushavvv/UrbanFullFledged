@@ -5,18 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+		 href="${pageContext.request.contextPath}/css/footer.css">
 </head>
-<body>
 
-	<div id="footer">
-		<p>&copy; 2024 Your Company Name. All rights reserved.</p>
-		<ul>
-			<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-			<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-			<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-		</ul>
-		<a href="contact.jsp">Contact Us</a>
-	</div>
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+      </div>
+      <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p> 2025 Urban. All rights reserved.</p>
+    </div>
+</footer>
 
-</body>
 </html>

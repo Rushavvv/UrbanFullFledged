@@ -93,6 +93,10 @@ input[type="date"],
     width: 190px;
 }
 
+.img{
+	margin-left: 50%;
+}
+
 .dropDown {
     margin-bottom: 20px;
     width:99%;

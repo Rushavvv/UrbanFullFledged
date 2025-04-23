@@ -6,23 +6,13 @@
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css"
 		 href="${pageContext.request.contextPath}/css/home.css">
+	<link rel="stylesheet" type="text/css"
+		 href="${pageContext.request.contextPath}/css/footer.css">
+	<link rel="stylesheet" type="text/css"
+		 href="${pageContext.request.contextPath}/css/header.css">
 </head>
 <body>
-    <nav>
-        <div class="dropdown">
-            <button class="dropbtn"> Menu</button>
-            <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
-                <a href="#">Option 2</a>
-                <a href="#">Option 3</a>
-            </div>
-        </div>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        
-        <div class="name">Urban</div>
-    </nav>
+    <jsp:include page="header.jsp" />
     <div class="container">
     	
         <img class="image1" src="${pageContext.request.contextPath}/resources/images/Picture3.png" alt="Camera1">
@@ -62,19 +52,5 @@
 
 </body>
 
-<footer class="footer">
-    <div class="footer-container">
-      <div class="footer-logo">
-      </div>
-      <div class="footer-links">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p> 2025 Urban. All rights reserved.</p>
-    </div>
-</footer>
+ <jsp:include page="footer.jsp" />
 </html>

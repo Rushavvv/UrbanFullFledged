@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import com.urban.model.UserModel;
 import com.urban.service.RegisterService;
+import com.urban.util.ImageUtil;
 import com.urban.util.PasswordUtil;
 
 import jakarta.servlet.ServletException;
@@ -13,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 /**
  * @author Rushav Sthapit
@@ -23,6 +25,7 @@ import jakarta.servlet.http.HttpServletResponse;
 				 maxRequestSize = 1024 * 1024 * 50)
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final ImageUtil imageUtil = new ImageUtil();
 	private final RegisterService registerService = new RegisterService();
 
 
@@ -74,10 +77,24 @@ public class RegisterController extends HttpServlet {
 		
 		password = PasswordUtil.encrypt(userName, password);
 		
-		return new UserModel(number, userName, email, gender, role, password, dob);	
+		Part image = req.getPart("image");
+		String imageUrl = imageUtil.getImageNameFromPart(image);
+		
+		return new UserModel(number, userName, email, gender, role, password, dob, imageUrl);	
 		} 
 	
+	private boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
+		Part image = req.getPart("image");
+		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "user");
+	}
+	
 		
+	private void handleSuccess(HttpServletRequest req, HttpServletResponse resp, String message, String redirectPage)
+			throws ServletException, IOException {
+		req.setAttribute("success", message);
+		req.getRequestDispatcher(redirectPage).forward(req, resp);
+	}
+	
 	private void handleError(HttpServletRequest req, HttpServletResponse resp, String message)
 			throws ServletException, IOException {
 		req.setAttribute("error", message);

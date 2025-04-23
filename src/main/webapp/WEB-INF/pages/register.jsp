@@ -12,7 +12,7 @@
     <h1 class="heading">Welcome to Urban Cam Store</h1>
     <div class="container">
         <h2>Register</h2>
-        <form action="${pageContext.request.contextPath}/register" method="post">
+        <form action="${pageContext.request.contextPath}/register" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="text" name="Name" placeholder="Name" required>
                 <input type="email" name="email" placeholder="Email" required>
@@ -31,6 +31,10 @@
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
              </select>
+              <div class="img">                
+                    <label for="image">Profile Picture:</label>
+                    <input type="file" id="image" name="image">
+            </div>
             <input type="submit" value="Register">
         </form>
     </div>

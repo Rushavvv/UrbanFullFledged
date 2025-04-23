@@ -11,6 +11,7 @@ public class UserModel {
 	private String gender;
 	private LocalDate dob;
 	private String password;
+	private String imageUrl;
 	
 	public UserModel() {
 		
@@ -44,6 +45,17 @@ public class UserModel {
 		this.role = role;
 		this.password = password;
 		this.dob = dob;
+	}
+	
+	public UserModel(String userNumber, String userName, String userEmail, String gender, String role, String password, LocalDate dob, String imageUrl ) {
+		this.userNumber = userNumber;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.gender = gender;
+		this.role = role;
+		this.password = password;
+		this.dob = dob;
+		this.imageUrl = imageUrl;
 	}
 	
 	public UserModel(String userName) {
@@ -112,6 +124,14 @@ public class UserModel {
 
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
+	}
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	
 	

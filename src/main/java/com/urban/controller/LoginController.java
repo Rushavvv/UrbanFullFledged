@@ -53,6 +53,7 @@ public class LoginController extends HttpServlet {
 
 			if (loginStatus != null && loginStatus) {
 				SessionUtil.setAttribute(req, "userName", username);
+				SessionUtil.setAttribute(req, "user", userModel);
 				if ("admin".equalsIgnoreCase(userrole)) {
 				    CookiesUtil.addCookie(resp, "role", "admin", 5 * 30);
 				    resp.sendRedirect(req.getContextPath() + "/dashboard"); // Redirect to /dashboard
