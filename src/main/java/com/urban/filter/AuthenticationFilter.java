@@ -22,6 +22,7 @@ public class AuthenticationFilter implements Filter {
 	private static final String REGISTER = "/register";
 	private static final String PROFILE = "/profile";
 	private static final String HOME = "/home";
+	private static final String ABOUT = "/about";
 	private static final String ROOT = "/";
 	private static final String JPG = ".jpg";
 	private static final String PNG = ".png";
@@ -50,7 +51,7 @@ public class AuthenticationFilter implements Filter {
 		// Get the requested URI
 		String uri = req.getRequestURI();
 
-		if (uri.endsWith(".css") || uri.endsWith(HOME) || uri.endsWith(PROFILE) || uri.endsWith(ROOT) || uri.endsWith(JPG) || uri.endsWith(PNG) || uri.endsWith(WEBP)) {
+		if (uri.endsWith(".css") || uri.endsWith(HOME) || uri.endsWith(PROFILE) || uri.endsWith(ABOUT) || uri.endsWith(ROOT) || uri.endsWith(JPG) || uri.endsWith(PNG) || uri.endsWith(WEBP)) {
 			chain.doFilter(request, response);
 			return;
 		}

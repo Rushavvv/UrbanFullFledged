@@ -44,7 +44,7 @@ public class LoginService {
 			System.out.println("Connection Error!");
 			return null;
 		}
-
+		
 		String query = "SELECT userName, password FROM User WHERE userName = ?";
 		try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
 			stmt.setString(1, userModel.getUserName());
@@ -59,6 +59,28 @@ public class LoginService {
 		}
 
 		return false;
+	}
+	
+	public UserModel getUserDetails(String username) {
+	    UserModel user = null;
+	    try (Connection conn = DbConfig.getDbConnection();
+	         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE userName = ?")) {
+	        
+	        stmt.setString(1, username);
+	        ResultSet rs = stmt.executeQuery();
+	        
+	        if (rs.next()) {
+	            user = new UserModel();
+	            user.setUserName(rs.getString("userName"));
+	            user.setUserEmail(rs.getString("userEmail"));
+	            user.setUserNumber(rs.getString("userNumber"));
+	            user.setImageUrl(rs.getString("image_path"));
+	        }
+	        
+	    } catch (SQLException | ClassNotFoundException e) {
+	        e.printStackTrace();
+	    }
+	    return user;
 	}
 	
 	public String getUserRole(String username) {
@@ -84,7 +106,7 @@ public class LoginService {
 
 
 	/**
-	 * Validates the password retrieved from the database.
+	 * Validates the password retrieved from the database. 
 	 *
 	 * @param result       the ResultSet containing the username and password from
 	 *                     the database

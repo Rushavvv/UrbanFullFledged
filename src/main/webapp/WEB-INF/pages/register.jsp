@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <input type="password" name="password" placeholder="Password" required>
-                <input type="password" name="retypePassword" placeholder="Retype Password" required>
+                <input type="password" name="retypePassword" placeholder="Confirm Password" required>
             </div>
             <div class="form-group">
                 <input type="tel" name="userNumber" placeholder="Phone Number" required>

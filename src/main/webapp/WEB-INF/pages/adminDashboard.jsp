@@ -22,16 +22,16 @@
           <h3>TOTAL USERS</h3>
           <div class="value">2,543</div>
           <div class="trend up">
-            <span>12% from last month</span>
+            <span>Total Users In The System</span>
             <img class="image2" src="${pageContext.request.contextPath}/resources/images/dashboardImg1.jpg" alt="Camera2">
           </div>
         </div>
         
         <div class="stat-card">
           <h3>TOTAL REVENUE</h3>
-          <div class="value">$45,243</div>
+          <div class="value">Rs.45,243</div>
           <div class="trend up">
-            <span>8% from last month</span>
+            <span>Total Profits Earned</span>
             <img class="image1" src="${pageContext.request.contextPath}/resources/images/dashboardImg2.jpg" alt="Camera2">
           </div>
         </div>
@@ -40,7 +40,7 @@
           <h3>ACTIVE PRODUCTS</h3>
           <div class="value">156</div>
           <div class="trend down">
-            <span>3% from last month</span>
+            <span>Products Currently In Stock</span>
             <img class="image3" src="${pageContext.request.contextPath}/resources/images/dashboardImg3.jpg" alt="Camera2">
           </div>
         </div>
@@ -65,8 +65,8 @@
         </thead>
         <tbody>
           <tr>
-            <td>John Doe</td>
-            <td>john.doe@example.com</td>
+            <td>Rushav Sthapit</td>
+            <td>rusu.sthapit@gmail.com</td>
             <td>Admin</td>
             <td>
               <div class="action-buttons">
@@ -76,9 +76,9 @@
             </td>
           </tr>
           <tr>
-            <td>Jane Smith</td>
-            <td>jane.smith@example.com</td>
-            <td>Manager</td>
+            <td>Ben Dover</td>
+            <td>ben@gmail.com</td>
+            <td>User</td>
             <td>
               <div class="action-buttons">
                 <button class="btn">Edit</button>
@@ -87,8 +87,8 @@
             </td>
           </tr>
           <tr>
-            <td>Robert Johnson</td>
-            <td>robert.j@example.com</td>
+            <td>Billu Adhikari</td>
+            <td>billu@gmail.com</td>
             <td>User</td>
             <td>
               <div class="action-buttons">
@@ -99,7 +99,7 @@
           </tr>
           <tr>
             <td>Lisa Brown</td>
-            <td>lisa.brown@example.com</td>
+            <td>lisa.brown@gmail.com</td>
             <td>User</td>
             <td>
               <div class="action-buttons">
@@ -109,9 +109,9 @@
             </td>
           </tr>
           <tr>
-            <td>Michael Wilson</td>
-            <td>michael.w@example.com</td>
-            <td>Editor</td>
+            <td>Sundar Einstein jr</td>
+            <td>einstein@gmail.com</td>
+            <td>Admin</td>
             <td>
               <div class="action-buttons">
                 <button class="btn">Edit</button>
