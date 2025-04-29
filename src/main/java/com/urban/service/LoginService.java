@@ -13,6 +13,7 @@ import com.urban.util.PasswordUtil;
 /**
  * Service class for handling login operations. Connects to the database,
  * verifies user credentials, and returns login status.
+ * @author Rushav Sthapit
  */
 public class LoginService {
 

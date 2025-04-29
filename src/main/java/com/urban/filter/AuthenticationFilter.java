@@ -2,6 +2,7 @@ package com.urban.filter;
 
 import java.io.IOException;
 
+import com.urban.util.CookiesUtil;
 import com.urban.service.LoginService;
 import com.urban.util.SessionUtil;
 
@@ -47,7 +48,6 @@ public class AuthenticationFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		String username = req.getParameter("userName");
 		String contextPath = req.getContextPath();
-//		String userRole = loginService.getUserRole(username);
 		// Get the requested URI
 		String uri = req.getRequestURI();
 
@@ -58,13 +58,9 @@ public class AuthenticationFilter implements Filter {
 
 		// Get the session and check if user is logged in
 		boolean isLoggedIn = SessionUtil.getAttribute(req, "userName") != null;
+		String userRole = CookiesUtil.getCookie(req, "role") != null ? CookiesUtil.getCookie(req, "role").getValue(): null;
 
-//		if(userRole.equals("admin")) {
-//			res.sendRedirect(req.getContextPath() + DASHBOARD);
-//		}else {
-//			res.sendRedirect(req.getContextPath() + LOGIN);
-//		}
-//		
+	
 		if (!isLoggedIn) {
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 				chain.doFilter(request, response);
@@ -72,10 +68,20 @@ public class AuthenticationFilter implements Filter {
 				res.sendRedirect(req.getContextPath() + LOGIN);
 			}
 		} else {
-			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
-				res.sendRedirect(req.getContextPath() + HOME);
-			} else {
-				chain.doFilter(request, response);
+			if("user".equals(userRole)){
+				if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
+					res.sendRedirect(req.getContextPath() + HOME);
+				}else if(uri.endsWith(DASHBOARD)) {
+					res.sendRedirect(req.getContextPath() + LOGIN);
+				} else {
+					chain.doFilter(request, response);
+				}
+			}else {
+				if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
+					res.sendRedirect(req.getContextPath() + HOME);
+				} else {
+					chain.doFilter(request, response);
+				}
 			}
 		}
 	}

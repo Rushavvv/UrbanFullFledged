@@ -45,7 +45,7 @@ public class LoginController extends HttpServlet {
 		String userrole = loginService.getUserRole(username);
 		
 
-		if (!validationUtil.IsEmpty("userName") && !validationUtil.IsEmpty("password")) {
+		if (!validationUtil.IsEmpty(username) && !validationUtil.IsEmpty(password)) {
 
 			UserModel userModel = new UserModel(username, password);
 			Boolean loginStatus = loginService.loginUser(userModel);
@@ -54,7 +54,7 @@ public class LoginController extends HttpServlet {
 			if (loginStatus != null && loginStatus) {
 				SessionUtil.setAttribute(req, "userName", username);
 				if ("admin".equalsIgnoreCase(userrole)) {
-				    CookiesUtil.addCookie(resp, "role", "admin", 5 * 30);
+				    CookiesUtil.addCookie(resp, "role", "admin", 7 * 30);
 				    resp.sendRedirect(req.getContextPath() + "/dashboard"); // Redirect to /dashboard
 				} else {
 					CookiesUtil.addCookie(resp, "role", "user", 5 * 30);

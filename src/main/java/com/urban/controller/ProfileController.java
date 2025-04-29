@@ -37,7 +37,8 @@ public class ProfileController extends HttpServlet {
             request.setAttribute("error", "No user logged in!");
         }
         
-        request.getRequestDispatcher("WEB-INF/pages/profile.jsp").forward(request, response);    }
+        request.getRequestDispatcher("WEB-INF/pages/profile.jsp").forward(request, response);  
+    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
