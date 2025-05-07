@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.SQLException;
-
 import com.urban.config.DbConfig;
-import com.urban.model.ProductsModel;
 import com.urban.model.UserModel;
 
 /**
@@ -50,39 +47,18 @@ public class DashboardService {
 		}
 
 		// SQL query to fetch user details
-		String query = "SELECT user_id, userName, userNumber, userEmail, gender, role FROM User";
+		String query = "SELECT userName, userNumber, userEmail, gender FROM User ORDER BY userId DESC LIMIT 5";
 		try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
 			ResultSet result = stmt.executeQuery();
 			List<UserModel> userList = new ArrayList<>();
 
 			while (result.next()) {
-				// SQL query to fetch program name based on program_id
-				String programQuery = "SELECT productId, productName FROM Products WHERE productId = ?";
-				try (PreparedStatement programStmt = dbConn.prepareStatement(programQuery)) {
-					programStmt.setInt(1, result.getInt("productId"));
-					ResultSet programResult = programStmt.executeQuery();
-
-					ProductsModel productsModel = new ProductsModel();
-					if (programResult.next()) {
-						// Set program name in the ProgramModel
-						productsModel.setProductName(programResult.getString("productName"));
-						productsModel.setProductId(programResult.getInt("productId"));
-					}
-
-					// Create and add StudentModel to the list
-					userList.add(new UserModel(result.getInt("userId"), // Student ID
-							result.getString("userName"), // First Name
-							result.getString("userNumber"), // Last Name
-							result.getString("userEmail"), // Email
-							result.getString("gender") // Phone Number
-					));
-
-					programResult.close(); // Close ResultSet to avoid resource leaks
-				} catch (SQLException e) {
-					// Log and handle exceptions related to program query execution
-					e.printStackTrace();
-					// Continue to process other students or handle this error appropriately
-				}
+				userList.add(new UserModel(
+						result.getString("userName"), 
+						result.getString("userNumber"), 
+						result.getString("userEmail"), 
+						result.getString("gender") 
+				));
 			}
 			return userList;
 		} catch (SQLException e) {
@@ -92,17 +68,16 @@ public class DashboardService {
 		}
 	}
 
-	public boolean updateStudent(UserModel user) {
+	public boolean updateUser(UserModel user) {
 		if (isConnectionError)
 			return false;
 
-		String updateQuery = "UPDATE User SET userName = ?, userNumber = ?, userEmail = ?, gender = ?, role = ? WHERE userId = ?";
+		String updateQuery = "UPDATE User SET userName = ?, userNumber = ?, userEmail = ?, gender = ? WHERE userId = ?";
 		try (PreparedStatement stmt = dbConn.prepareStatement(updateQuery)) {
 			stmt.setString(1, user.getUserName());
 			stmt.setString(2, user.getUserNumber());
 			stmt.setString(3, user.getUserEmail());
 			stmt.setString(4, user.getGender());
-			stmt.setString(5, user.getRole());
 			
 			int rowsUpdated = stmt.executeUpdate();
 			return rowsUpdated > 0;
@@ -146,5 +121,66 @@ public class DashboardService {
 			return null;
 		}
 	}
+	
+	public int getTotalUsers() {
+		if (isConnectionError) return 0;
+
+		String query = "SELECT COUNT(*) AS total FROM User";
+		try (PreparedStatement stmt = dbConn.prepareStatement(query);
+			 ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public int getTotalRevenue() {
+		if (isConnectionError) return 0;
+
+		String query = "SELECT SUM(totalPrice) AS totalRevenue FROM Sales"; 
+		try (PreparedStatement stmt = dbConn.prepareStatement(query);
+			 ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt("totalRevenue");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public int getActiveProducts() {
+		if (isConnectionError) return 0;
+
+		String query = "SELECT COUNT(*) AS total FROM Products"; 
+		try (PreparedStatement stmt = dbConn.prepareStatement(query);
+			 ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public boolean deleteUserByEmail(String email) {
+		if (isConnectionError)
+			return false;
+
+		String deleteQuery = "DELETE FROM User WHERE userEmail = ?";
+		try (PreparedStatement stmt = dbConn.prepareStatement(deleteQuery)) {
+			stmt.setString(1, email);
+			int rowsDeleted = stmt.executeUpdate();
+			return rowsDeleted > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 
 }

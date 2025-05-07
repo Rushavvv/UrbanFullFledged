@@ -16,7 +16,7 @@
 		 href="${pageContext.request.contextPath}/css/header.css">
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp"/>
     <div class="container">     
         
         <!-- Main content -->

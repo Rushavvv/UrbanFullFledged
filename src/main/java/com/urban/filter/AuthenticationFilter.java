@@ -46,12 +46,10 @@ public class AuthenticationFilter implements Filter {
 		// Cast the request and response to HttpServletRequest and HttpServletResponse
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		String username = req.getParameter("userName");
-		String contextPath = req.getContextPath();
 		// Get the requested URI
 		String uri = req.getRequestURI();
 
-		if (uri.endsWith(".css") || uri.endsWith(HOME) || uri.endsWith(PROFILE) || uri.endsWith(ABOUT) || uri.endsWith(ROOT) || uri.endsWith(JPG) || uri.endsWith(PNG) || uri.endsWith(WEBP)) {
+		if (uri.endsWith(".css") || uri.endsWith(ROOT) || uri.endsWith(JPG) || uri.endsWith(PNG) || uri.endsWith(WEBP)) {
 			chain.doFilter(request, response);
 			return;
 		}
@@ -75,7 +73,7 @@ public class AuthenticationFilter implements Filter {
 					res.sendRedirect(req.getContextPath() + LOGIN);
 				} else {
 					chain.doFilter(request, response);
-				}
+				} 
 			}else {
 				if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 					res.sendRedirect(req.getContextPath() + HOME);

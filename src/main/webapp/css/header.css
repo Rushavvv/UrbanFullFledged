@@ -1,10 +1,16 @@
 @charset "UTF-8";
 
-.name{
-	margin-left: 1280px;
+.name h1{
+	margin-left: 1180px;
 	font-size: 50px;
 	color: white;
 	font-family: Didot, serif;
+}
+
+.name a{ 
+	margin-left: 880px;
+	font-size: 18px;
+	color: white;
 }
 
 nav {

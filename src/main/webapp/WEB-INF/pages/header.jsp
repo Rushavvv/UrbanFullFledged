@@ -12,7 +12,7 @@
     pageContext.setAttribute("currentUser", currentUser);
 %>
 <!-- Set contextPath variable -->
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%-- <c:set var="contextPath" value="${pageContext.request.contextPath}"/> --%>
 
 <link rel="stylesheet" type="text/css"
 		 href="${contextPath}/css/header.css">
@@ -21,7 +21,7 @@
         <div class="dropdown">
             <button class="dropbtn"> Menu</button>
             <div class="dropdown-content">
-                <a href="${contextPath}/dashboard">Dashboard</a>
+                <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
                 <a href="#">Option 2</a>
                 <a href="#">Option 3</a>
             </div>
@@ -30,5 +30,17 @@
         <a href="about">About</a>
         <a href="profile">Profile</a>
         
-        <div class="name">Urban</div>
+        <div class="name">
+        <c:choose>
+					<c:when test="${not empty currentUser}">
+						<form action="${pageContext.request.contextPath}/logout" method="post">
+							<input type="submit" class="nav-button" value="Logout" />
+						</form>
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/logout">Logout</a>
+					</c:otherwise>
+				</c:choose>
+        <h1>Urban</h1>
+        </div>
     </nav>  

@@ -62,6 +62,13 @@ public class UserModel {
 		this.userName = userName;
 	}
 
+	public UserModel(String userName, String userNumber, String userEmail, String gender) {
+		this.userName = userName; 
+		this.userNumber = userNumber; 
+		this.userEmail = userEmail; 
+		this.gender = gender;
+	}
+
 	public int getUserId() {
 		return userId;
 	}

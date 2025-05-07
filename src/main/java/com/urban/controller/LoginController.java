@@ -53,12 +53,22 @@ public class LoginController extends HttpServlet {
 
 			if (loginStatus != null && loginStatus) {
 				SessionUtil.setAttribute(req, "userName", username);
+				
+				UserModel emailUserModel = loginService.getUserDetails(username);
+				SessionUtil.setAttribute(req, "userEmail", emailUserModel.getUserEmail());
+				System.out.println("Session set:");
+				System.out.println("Session ID: " + req.getSession().getId());
+				System.out.println("userEmail: " + emailUserModel.getUserEmail());
+				
+				System.out.println("role: " + userrole);
 				if ("admin".equalsIgnoreCase(userrole)) {
 				    CookiesUtil.addCookie(resp, "role", "admin", 7 * 30);
+					System.out.println("adminCookie set");
 				    resp.sendRedirect(req.getContextPath() + "/dashboard"); // Redirect to /dashboard
 				} else {
 					CookiesUtil.addCookie(resp, "role", "user", 5 * 30);
 					resp.sendRedirect(req.getContextPath() + "/home"); // Redirect to /home
+					System.out.println("userCookie set");
 				}
 			} else {
 				handleLoginFailure(req, resp, loginStatus);

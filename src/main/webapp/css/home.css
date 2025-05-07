@@ -25,6 +25,18 @@ body {
     margin-top: 200p;
 }
 
+.name h1{
+	margin-left: 1180px;
+	font-size: 50px;
+	color: white;
+	font-family: Didot, serif;
+}
+
+.name a{ 
+	margin-left: 880px;
+	font-size: 18px;
+	color: white;
+}
 
 .logo{
     background-image: url("../resources/images/logo.png");

@@ -12,7 +12,7 @@
 		 href="${pageContext.request.contextPath}/css/header.css">
 </head>
 <body>
-    <jsp:include page="header.jsp" />
+    <jsp:include page="header.jsp"/>
     <div class="container">
     	
         <img class="image1" src="${pageContext.request.contextPath}/resources/images/Picture3.png" alt="Camera1">
@@ -52,5 +52,5 @@
 
 </body>
 
- <jsp:include page="footer.jsp" />
+ <jsp:include page="footer.jsp"/>
 </html>

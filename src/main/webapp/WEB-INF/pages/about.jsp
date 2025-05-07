@@ -14,7 +14,7 @@
 		 href="${pageContext.request.contextPath}/css/header.css">
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp"/>
     <div class="container">     
         
         <!-- Main content -->
@@ -23,7 +23,7 @@
         </div>
         
         <!-- Footer -->
-        <jsp:include page="footer.jsp" />
+        <jsp:include page="footer.jsp"/>
     </div>
 </body>
 </html>
