@@ -6,4 +6,14 @@
     <url-pattern>/css/*</url-pattern>
     <url-pattern>/resources/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>UserDeleteController</servlet-name>
+    <servlet-class>com.urban.controller.UserDeleteController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>UserDeleteController</servlet-name>
+    <url-pattern>/delete</url-pattern>
+</servlet-mapping>
 </web-app>

@@ -10,13 +10,14 @@ public class ProductsModel {
 		
 	}
 
-	public ProductsModel(int productId, int productPrice, int inStock, String productName) {
+	public ProductsModel(int productId, String productName, int productPrice, int inStock) {
 		super();
 		this.productId = productId;
 		this.productPrice = productPrice;
 		this.inStock = inStock;
 		this.productName = productName;
 	}
+
 
 	public int getProductId() {
 		return productId;

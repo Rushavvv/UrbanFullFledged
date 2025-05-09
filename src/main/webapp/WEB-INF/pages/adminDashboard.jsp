@@ -71,10 +71,12 @@
 			    <td><c:out value="${user.userEmail}" /></td>
 			    <td><c:out value="${user.gender}" /></td>
 			    <td>
-			      <div class="action-buttons">
-			        <a href="editUser.jsp?email=${user.userEmail}" class="btn btn-primary">Edit</a>
-        			<a href="${pageContext.request.contextPath}/delete?email=${user.userEmail}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
-			      </div>
+			      <div class="action-buttons" style="display: flex; gap: 10px;">
+				    <form action="${pageContext.request.contextPath}/dashboard" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
+					    <input type="hidden" name="userEmail" value="${user.userEmail}" />
+					    <input type="submit" name = "action" value="Delete" class="btn btn-danger"/>
+					</form>
+				  </div>
 			    </td>
 			  </tr>
 			</c:forEach>

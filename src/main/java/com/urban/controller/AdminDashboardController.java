@@ -28,7 +28,8 @@ public class AdminDashboardController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DashboardService dashboardService = new DashboardService();
-
+		
+		System.out.println("AdminDAhboard Controller called");
  	    int totalUsers = dashboardService.getTotalUsers();
 		int totalRevenue = dashboardService.getTotalRevenue();
 		int activeProducts = dashboardService.getActiveProducts();
@@ -39,6 +40,19 @@ public class AdminDashboardController extends HttpServlet {
 		request.setAttribute("totalRevenue", totalRevenue);
 		request.setAttribute("activeProducts", activeProducts);
 		request.setAttribute("recentUsers", recentUsers);
+		
+		String action = request.getParameter("action");
+	    String userEmail = request.getParameter("userEmail");
+
+	    if ("Delete".equals(action) && userEmail != null && !userEmail.isEmpty()) {
+	        boolean deleted = dashboardService.deleteUserByEmail(userEmail);
+	        if (deleted) {
+	            request.setAttribute("message", "User deleted successfully.");
+	        } else {
+	            request.setAttribute("error", "Failed to delete user.");
+	        }
+	    }
+
 		request.getRequestDispatcher(RedirectionUtil.dashboardUrl).forward(request, response);
 	}
 

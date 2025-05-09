@@ -22,7 +22,7 @@
             <button class="dropbtn"> Menu</button>
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
-                <a href="#">Option 2</a>
+                <a href="${pageContext.request.contextPath}/adminControl">Admin Control</a>
                 <a href="#">Option 3</a>
             </div>
         </div>

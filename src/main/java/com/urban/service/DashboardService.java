@@ -34,7 +34,7 @@ public class DashboardService {
 	}
 
 	/**
-	 * Retrieves all student information from the database.
+	 * Retrieves all user information from the database.
 	 * 
 	 * @return A list of StudentModel objects containing student data. Returns null
 	 *         if there is a connection error or if an exception occurs during query
