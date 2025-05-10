@@ -72,6 +72,22 @@ public class ControlService {
 		}
 	}
 
-	
+	public boolean addProduct(ProductsModel product) {
+	    String query = "INSERT INTO Products (productName, productPrice, inStock) VALUES (?, ?, ?)";
+
+	    try (Connection conn = DbConfig.getDbConnection();
+	         PreparedStatement stmt = conn.prepareStatement(query)) {
+
+	        stmt.setString(1, product.getProductName());
+	        stmt.setDouble(2, product.getProductPrice());
+	        stmt.setInt(3, product.getInStock());
+
+	        return stmt.executeUpdate() > 0;
+
+	    } catch (SQLException | ClassNotFoundException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
 
 }

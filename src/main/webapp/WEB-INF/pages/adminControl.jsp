@@ -10,18 +10,14 @@
 <title>Urban</title>
 <link rel="stylesheet" type="text/css"
 		 href="${contextPath}/css/adminControl.css">
+<link rel="stylesheet" type="text/css"
+		 href="${pageContext.request.contextPath}/css/footer.css">
+<link rel="stylesheet" type="text/css"
+		 href="${pageContext.request.contextPath}/css/header.css">
 </head>
 <body>
-  <div class="navbar">
-    <div class="nav-items">
-      <a href="#">Menu</a>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Profile</a>
-    </div>
-    <div class="logo">Urban</div>
-    <a href="#" class="logout-btn">Logout</a>
-  </div>
+  <jsp:include page="header.jsp"/>
+
   
   <div class="container">
     <h1>Admin Dashboard</h1>
@@ -36,7 +32,9 @@
       </div>
       
       <div class="action-buttons">
+      <a href= "${contextPath}/addProduct">
         <button class="action-btn primary">Add New Product</button>
+       </a>
       </div>
       
       <table class="products-table">
@@ -57,10 +55,12 @@
    			    <td><c:out value="${product.inStock}" /></td>
 			    <td><c:out value="${product.productPrice}" /></td>
 			    <td>
-			      <div class="action-buttons">
-			        <a href="editUser.jsp?email=${product.productId}" class="btn btn-primary">Edit</a>
-        			<a href="${pageContext.request.contextPath}/delete?email=${product.productId}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
-			      </div>
+			     <div class="action-buttons" style="display: flex; gap: 10px;">
+				    <form action="${pageContext.request.contextPath}/adminControl" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
+					    <input type="hidden" name="productId" value="${product.productId}" />
+					    <input type="submit" name = "action" value="Delete" class="btn btn-danger"/>
+					</form>
+				  </div>
 			    </td>
 			  </tr>
 			</c:forEach>
@@ -69,5 +69,10 @@
       
     </div>
   </div>
+  
+
 </body>
+
+    <jsp:include page="footer.jsp"/>
+
 </html>

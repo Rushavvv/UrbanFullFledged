@@ -31,6 +31,7 @@ public class AuthenticationFilter implements Filter {
 	private static final String WEBP = ".webp";
 	private static final String DASHBOARD = "/dashboard";
 	private static final String ADMINCONTROL = "/adminControl";
+	private static final String ADDPRODUCT = "/addProduct";
 
 
 	@Override
@@ -62,9 +63,9 @@ public class AuthenticationFilter implements Filter {
 			// Admin is logged in
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 				res.sendRedirect(req.getContextPath() + LOGIN);
-			} else if (uri.endsWith(DASHBOARD) || uri.endsWith(HOME) || uri.endsWith(ROOT)|| uri.endsWith(ABOUT) || uri.endsWith(ADMINCONTROL)) {
+			} else if (uri.endsWith(DASHBOARD) || uri.endsWith(HOME) || uri.endsWith(ROOT)|| uri.endsWith(ABOUT) || uri.endsWith(ADMINCONTROL) || uri.endsWith(ADDPRODUCT)) {
 				chain.doFilter(request, response);
-	
+
 			} else {
 				res.sendRedirect(req.getContextPath() + DASHBOARD);
 			}

@@ -17,6 +17,14 @@ public class ProductsModel {
 		this.inStock = inStock;
 		this.productName = productName;
 	}
+	
+	public ProductsModel( String productName, int productPrice, int inStock) {
+		this.productPrice = productPrice;
+		this.inStock = inStock;
+		this.productName = productName;
+	}
+
+
 
 
 	public int getProductId() {
