@@ -26,16 +26,34 @@
       <div class="panel-header">
         <div class="panel-title">Product Management</div>
         <div class="search-bar">
-          <input type="text" placeholder="Search products...">
-          <button>Search</button>
+          <form action="${pageContext.request.contextPath}/adminControl" method="get" style="margin-bottom: 20px;">
+		    <input type="text" name="Search" placeholder="Search by product name" />
+		    <input type="submit" value="Search" />
+		  </form>
         </div>
       </div>
       
-      <div class="action-buttons">
-      <a href= "${contextPath}/addProduct">
-        <button class="action-btn primary">Add New Product</button>
-       </a>
-      </div>
+      <table>
+	  <tr>
+	    <!-- Add New Product Button -->
+	    <td>
+	      <div class="action-buttons">
+	        <a href="${contextPath}/addProduct">
+	          <button class="action-btn primary">Add New Product</button>
+	        </a>
+	      </div>
+	    </td>
+	
+	    <!-- Edit Product Button -->
+	    <td>
+	     <div class="action-buttons">
+	      <a href= "${contextPath}/editProduct">
+	        <button class="action-btn primary">Edit Product</button>
+	       </a>
+	      </div>
+	    </td>
+	  </tr>
+	</table>
       
       <table class="products-table">
         <thead>
@@ -72,7 +90,5 @@
   
 
 </body>
-
-    <jsp:include page="footer.jsp"/>
 
 </html>

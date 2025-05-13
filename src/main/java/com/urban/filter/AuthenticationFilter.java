@@ -32,6 +32,7 @@ public class AuthenticationFilter implements Filter {
 	private static final String DASHBOARD = "/dashboard";
 	private static final String ADMINCONTROL = "/adminControl";
 	private static final String ADDPRODUCT = "/addProduct";
+	private static final String EDITPRODUCT = "/editProduct";
 
 
 	@Override
@@ -63,9 +64,10 @@ public class AuthenticationFilter implements Filter {
 			// Admin is logged in
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 				res.sendRedirect(req.getContextPath() + LOGIN);
-			} else if (uri.endsWith(DASHBOARD) || uri.endsWith(HOME) || uri.endsWith(ROOT)|| uri.endsWith(ABOUT) || uri.endsWith(ADMINCONTROL) || uri.endsWith(ADDPRODUCT)) {
-				chain.doFilter(request, response);
-
+			}else if (uri.contains(DASHBOARD) || uri.contains(HOME) || uri.equals(req.getContextPath() + ROOT)
+			        || uri.contains(ABOUT) || uri.contains(ADMINCONTROL)
+			        || uri.contains(ADDPRODUCT) || uri.contains(EDITPRODUCT)) {
+			    chain.doFilter(request, response);
 			} else {
 				res.sendRedirect(req.getContextPath() + DASHBOARD);
 			}

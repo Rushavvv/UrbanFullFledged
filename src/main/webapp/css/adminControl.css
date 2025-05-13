@@ -10,34 +10,7 @@
       color: #ffffff;
       min-height: 100vh;
     }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: #000000;
-      border-bottom: 1px solid #333;
-    }
-    .nav-items {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .nav-items a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-    }
-    .logout-btn {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
+
     .container {
       max-width: 100%;
       margin: 0 auto;
@@ -69,6 +42,7 @@
     .search-bar {
       display: flex;
       gap: 0.5rem;
+      width: 100%;
     }
     .search-bar input {
       padding: 0.5rem 1rem;

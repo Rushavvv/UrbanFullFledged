@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.urban.config.DbConfig;
 import com.urban.model.ProductsModel;
@@ -88,6 +90,54 @@ public class ControlService {
 	        e.printStackTrace();
 	        return false;
 	    }
+	}
+	
+	
+	public boolean updateProduct(ProductsModel product) {
+        boolean result = false;
+        String sql = "UPDATE products SET productName = ?, productPrice = ?, inStock = ? WHERE productId = ?";
+
+        try (Connection conn = DbConfig.getDbConnection();  
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, product.getProductName());
+            stmt.setInt(2, product.getProductPrice());
+            stmt.setInt(3, product.getInStock());
+            stmt.setInt(4, product.getProductId());
+
+            int rowsAffected = stmt.executeUpdate();
+            result = rowsAffected > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+	
+	public ProductsModel binarySearchProductByName(String name) {
+	    List<ProductsModel> allProducts = getAllProductDetails();
+
+	    allProducts.sort(Comparator.comparing(ProductsModel::getProductName, String.CASE_INSENSITIVE_ORDER));
+
+	    int left = 0;
+	    int right = allProducts.size() - 1;
+
+	    while (left <= right) {
+	        int mid = left + (right - left) / 2;
+	        ProductsModel midProduct = allProducts.get(mid);
+	        int comparison = midProduct.getProductName().compareToIgnoreCase(name);
+
+	        if (comparison == 0) {
+	            return midProduct; // Match found
+	        } else if (comparison < 0) {
+	            left = mid + 1; // Search right half
+	        } else {
+	            right = mid - 1; // Search left half
+	        }
+	    }
+
+	    return null; // Not found
 	}
 
 }

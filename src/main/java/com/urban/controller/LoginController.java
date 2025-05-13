@@ -62,11 +62,11 @@ public class LoginController extends HttpServlet {
 				
 				System.out.println("role: " + userrole);
 				if ("admin".equalsIgnoreCase(userrole)) {
-				    CookiesUtil.addCookie(resp, "role", "admin", 7 * 30);
+				    CookiesUtil.addCookie(resp, "role", "admin", 10 * 30);
 					System.out.println("userCookie set");
 				    resp.sendRedirect(req.getContextPath() + "/dashboard"); // Redirect to /dashboard
 				} else {
-					CookiesUtil.addCookie(resp, "role", "user", 5 * 30);
+					CookiesUtil.addCookie(resp, "role", "user", 10 * 30);
 					resp.sendRedirect(req.getContextPath() + "/home"); // Redirect to /home
 					System.out.println("userCookie set");
 				}

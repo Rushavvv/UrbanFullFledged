@@ -62,7 +62,6 @@ public class DashboardService {
 			}
 			return userList;
 		} catch (SQLException e) {
-			// Log and handle exceptions related to student query execution
 			e.printStackTrace();
 			return null;
 		}

@@ -22,25 +22,24 @@
             <button class="dropbtn"> Menu</button>
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
-                <a href="${pageContext.request.contextPath}/adminControl">Admin Control</a>
-                <a href="#">Option 3</a>
+                <a href="${pageContext.request.contextPath}/adminControl">Product Control</a>
+                <a href="#">User Control</a>
             </div>
         </div>
         <a href="home">Home</a>
         <a href="about">About</a>
         <a href="profile">Profile</a>
         
-        <div class="name">
         <c:choose>
-					<c:when test="${not empty currentUser}">
-						<form action="${pageContext.request.contextPath}/logout" method="post">
-							<input type="submit" class="nav-button" value="Logout" />
-						</form>
-					</c:when>
-					<c:otherwise>
-						<a href="${pageContext.request.contextPath}/logout">Logout</a>
-					</c:otherwise>
-				</c:choose>
-        <h1>Urban</h1>
-        </div>
+		    <c:when test="${not empty currentUser}">
+		        <form action="${pageContext.request.contextPath}/logout" method="post" class="logout-form">
+		            <button type="submit" class="logout-button">Logout</button>
+		        </form>
+		    </c:when>
+		    <c:otherwise>
+		        <a href="${pageContext.request.contextPath}/logout">Logout</a>
+		    </c:otherwise>
+		</c:choose>
+		
+		<h1 class="urban">Urban</h1>
     </nav>  
