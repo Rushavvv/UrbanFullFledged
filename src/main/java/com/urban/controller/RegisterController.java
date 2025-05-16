@@ -42,6 +42,14 @@ public class RegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			UserModel userModel = extractUserModel(req);
+			
+			boolean isUploaded = uploadImage(req);
+			if (!isUploaded) {
+				System.out.println("1");
+				handleError(req, resp, "Failed to upload profile image. Please try again.");
+				return;
+			}
+			
 			Boolean isAdded = registerService.addUser(userModel);
 
 			if (isAdded == null){
@@ -85,6 +93,7 @@ public class RegisterController extends HttpServlet {
 	
 	private boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
 		Part image = req.getPart("image");
+		System.out.println(image);
 		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "user");
 	}
 	

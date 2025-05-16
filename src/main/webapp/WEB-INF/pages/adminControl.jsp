@@ -27,7 +27,7 @@
         <div class="panel-title">Product Management</div>
         <div class="search-bar">
           <form action="${pageContext.request.contextPath}/adminControl" method="get" style="margin-bottom: 20px;">
-		    <input type="text" name="Search" placeholder="Search by product name" />
+		    <input type="text" name="Search" placeholder="Search product" />
 		    <input type="submit" value="Search" />
 		  </form>
         </div>

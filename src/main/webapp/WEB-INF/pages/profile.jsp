@@ -23,7 +23,7 @@
         <div class="main">
             <div class="profile-image-container">
                 <div class="profile-circle">
-                    <img src="${pageContext.request.contextPath}/resources/images/${user.imageUrl}" alt="Profile" class="profile-image">
+                    <img src="${pageContext.request.contextPath}/resources/images/user/${user.imageUrl}" alt="Profile" class="profile-image">
                 </div>
             </div>
             

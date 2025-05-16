@@ -49,7 +49,7 @@ public class ImageUtil {
 		// Check if the filename was not found or is empty
 		if (imageName == null || imageName.isEmpty()) {
 			// Assign a default file name if none was provided
-			imageName = "download.png";
+			imageName = "defaultPfp.jpg";
 		}
 
 		// Return the extracted or default file name
@@ -75,18 +75,18 @@ public class ImageUtil {
 		String savePath = getSavePath(saveFolder);
 		File fileSaveDir = new File(savePath);
 
-		// Ensure the directory exists
-		if (!fileSaveDir.exists()) {
-			if (!fileSaveDir.mkdir()) {
-				return false; // Failed to create the directory
-			}
+		if (!fileSaveDir.exists() && !fileSaveDir.mkdirs()) {
+			return false;
 		}
+
 		try {
 			// Get the image name
 			String imageName = getImageNameFromPart(part);
 			// Create the file path
-			String filePath = savePath + "/" + imageName;
+			String filePath = savePath + imageName;
 			// Write the file to the server
+			System.out.println("Saving image to: " + filePath);
+
 			part.write(filePath);
 			return true; // Upload successful
 		} catch (IOException e) {
@@ -96,6 +96,6 @@ public class ImageUtil {
 	}
 	
 	public String getSavePath(String saveFolder) {
-		return "Urban/src/main/webapp/resources/images/"+saveFolder+"/";
+		return "/Users/rushav/eclipse-workspace/Urban/src/main/webapp/resources/images/" +saveFolder+"/";
 	}
 }

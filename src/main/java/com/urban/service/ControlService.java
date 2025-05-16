@@ -59,7 +59,7 @@ public class ControlService {
 	
 	public boolean deleteProductById(int productId) {
 		if (productId <= 0) return false;
-
+		System.out.println("Delete called");
 		String query = "DELETE FROM Products WHERE productId = ?";
 		try (Connection conn = DbConfig.getDbConnection();
 			 PreparedStatement stmt = conn.prepareStatement(query)) {

@@ -40,7 +40,7 @@ public class LogoutController extends HttpServlet {
             for (Cookie cookie : cookies) {
                 if ("Role".equals(cookie.getName())) {
                     cookie.setValue("");
-                    cookie.setPath(req.getContextPath());
+                    cookie.setPath("/");
                     cookie.setMaxAge(0); // Set expiration to remove it
                     resp.addCookie(cookie); // Add modified cookie to response
                 }

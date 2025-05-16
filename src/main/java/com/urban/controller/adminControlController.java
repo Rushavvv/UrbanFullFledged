@@ -37,22 +37,6 @@ public class AdminControlController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	ControlService controlService = new ControlService();
 
-        String action = request.getParameter("action");
-        String productId = request.getParameter("productId");
-
-        if ("Delete".equals(action) && productId != null && !productId.isEmpty()) {
-            int prodId = Integer.parseInt(productId);
-            boolean deleted = controlService.deleteProductById(prodId);
-            if (deleted) {
-	            response.sendRedirect("adminControl");
-                request.setAttribute("message", "Product deleted successfully.");
-                return;
-                
-            } else {
-                request.setAttribute("error", "Failed to delete product.");
-            }
-        }
-
         String searchQuery = request.getParameter("Search");
         List<ProductsModel> searchProducts;
 
@@ -77,6 +61,8 @@ public class AdminControlController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
 	    ControlService controlService = new ControlService();
+        String productId = request.getParameter("productId");
+
 
 	    if ("Add".equals(action)) {
 	        String name = request.getParameter("productName");
@@ -93,7 +79,19 @@ public class AdminControlController extends HttpServlet {
 	            request.getRequestDispatcher("WEB-INF/pages/adminControl.jsp").forward(request, response);
 	        }
 
-	    } else if ("Edit".equals(action)) {
+	    } else if ("Delete".equals(action) && productId != null && !productId.isEmpty()) {
+            int prodId = Integer.parseInt(productId);
+            boolean deleted = controlService.deleteProductById(prodId);
+            if (deleted) {
+	            response.sendRedirect("adminControl");
+                request.setAttribute("message", "Product deleted successfully.");
+                return;
+                
+            } else {
+                request.setAttribute("error", "Failed to delete product.");
+            }
+            
+        } else if ("Edit".equals(action)) {
 	        int id = Integer.parseInt(request.getParameter("productId"));
 	        String name = request.getParameter("productName");
 	        int price = Integer.parseInt(request.getParameter("productPrice"));
