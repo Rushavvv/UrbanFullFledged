@@ -51,7 +51,6 @@
     
     <div class="section-title">
       <h2>Recent Users</h2>
-      <div class="view-all">View All</div>
     </div>
     
     <div class="data-table">
@@ -86,6 +85,4 @@
   </div>
 
 </body>
-
- <jsp:include page="footer.jsp"/>
 </html>

@@ -3,8 +3,7 @@
 	padding-bottom:-500px;
     background-color: white;
     padding-bottom: 20px;
-    align-items: center;
-    width: 1200px;
+    width: 100%;
 }
 
 .footer-logo{
@@ -17,6 +16,5 @@
 }
 
 .footer-links{
-	margin-left: 850px;
 	align-items: center;
 }

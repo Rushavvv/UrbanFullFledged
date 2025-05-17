@@ -20,8 +20,6 @@ nav {
     display: flex;
     align-items: center;
     position: relative;
-    margin-bottom: 80px;
-    margin-left:50px;
 }
 
 nav a {
@@ -49,7 +47,7 @@ nav a {
     position: absolute;
     left: 0;
     top: 100%;
-    background-color: white;
+    background-color: black;
     min-width: 150px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -97,7 +95,7 @@ nav a {
 
 .urban {
 	
-    margin-left: 1100px;
+    margin-left: 1000px;
     font-size: 50px;
     color: white;
     font-family: Didot, serif;

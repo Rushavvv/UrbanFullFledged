@@ -45,7 +45,7 @@ public class LoginController extends HttpServlet {
 		String userrole = loginService.getUserRole(username);
 		
 
-		if (!validationUtil.IsEmpty(username) && !validationUtil.IsEmpty(password)) {
+		if (!validationUtil.isEmpty(username) && !validationUtil.isEmpty(password)) {
 
 			UserModel userModel = new UserModel(username, password);
 			Boolean loginStatus = loginService.loginUser(userModel);

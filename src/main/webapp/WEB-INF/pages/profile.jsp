@@ -36,11 +36,11 @@
                 </h2>
 			</div>
 			
-			<div class="action-buttons">
+	<%-- 		<div class="action-buttons">
 		      	<a href= "${contextPath}/editProfile">
 		        <button class="action-btn primary">Edit Profile</button>
 		        </a>
-	        </div>
+	        </div> --%>
         </div>
 
     </div>

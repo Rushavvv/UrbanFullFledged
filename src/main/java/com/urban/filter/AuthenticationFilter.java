@@ -33,6 +33,8 @@ public class AuthenticationFilter implements Filter {
 	private static final String ADMINCONTROL = "/adminControl";
 	private static final String ADDPRODUCT = "/addProduct";
 	private static final String EDITPRODUCT = "/editProduct";
+	private static final String PRODUCTSPAGE = "/productsPage";
+
 
 
 	@Override
@@ -50,7 +52,7 @@ public class AuthenticationFilter implements Filter {
 		// Get the requested URI
 		String uri = req.getRequestURI();
 
-		if (uri.endsWith(".css") || uri.endsWith(ROOT) || uri.endsWith(JPG) || uri.endsWith(PNG) || uri.endsWith(WEBP)|| uri.endsWith("/logout")) {
+		if (uri.endsWith(".css") || uri.endsWith(ROOT) || uri.endsWith(JPG) || uri.endsWith(PNG) || uri.endsWith(WEBP)|| uri.endsWith(".jpeg")|| uri.endsWith("/logout")) {
 			chain.doFilter(request, response);
 			return;
 		}
@@ -75,7 +77,7 @@ public class AuthenticationFilter implements Filter {
 			// Customer is logged in
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 				res.sendRedirect(req.getContextPath() + HOME);
-			} else if (uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ABOUT) || uri.endsWith(PROFILE)) {
+			} else if (uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ABOUT) || uri.endsWith(PROFILE) || uri.endsWith(PRODUCTSPAGE)) {
 				chain.doFilter(request, response);
 			
 			} else {
@@ -83,7 +85,7 @@ public class AuthenticationFilter implements Filter {
 			}
 		} else {
 			// Not logged in
-			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER) || uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ABOUT)) {
+			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER) || uri.endsWith(HOME) || uri.endsWith(ROOT)) {
 				chain.doFilter(request, response);
 			} else {
 				res.sendRedirect(req.getContextPath() + LOGIN);

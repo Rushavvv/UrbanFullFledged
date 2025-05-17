@@ -12,6 +12,24 @@
     <h1 class="heading">Welcome to Urban Cam Store</h1>
     <div class="container">
         <h2>Register</h2>
+        
+          <%-- Error or success messages --%>
+        <%
+            String errorMessage = (String) request.getAttribute("error");
+            String successMessage = (String) request.getAttribute("success");
+
+            if (errorMessage != null && !errorMessage.isEmpty()) {
+ 				out.println("<p class=\"error-message\">" + errorMessage + "</p>");
+
+            }
+
+            if (successMessage != null && !successMessage.isEmpty()) {
+        %>
+            <p class="success-message"><%= successMessage %></p>
+        <%
+            }
+        %>
+        
         <form action="${pageContext.request.contextPath}/register" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="text" name="Name" placeholder="Name" required>

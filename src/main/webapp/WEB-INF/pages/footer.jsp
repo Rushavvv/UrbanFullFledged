@@ -12,8 +12,6 @@
         <a href="#">Contact</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p> 2025 Urban. All rights reserved.</p>
-    </div>
+
 </footer>
 

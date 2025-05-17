@@ -23,12 +23,13 @@
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
                 <a href="${pageContext.request.contextPath}/adminControl">Product Control</a>
-                <a href="#">User Control</a>
             </div>
         </div>
         <a href="home">Home</a>
         <a href="about">About</a>
         <a href="profile">Profile</a>
+        <a href="productsPage">Products</a>
+        
         
         <c:choose>
 		    <c:when test="${not empty currentUser}">

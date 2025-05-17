@@ -7,6 +7,7 @@ import com.urban.model.UserModel;
 import com.urban.service.RegisterService;
 import com.urban.util.ImageUtil;
 import com.urban.util.PasswordUtil;
+import com.urban.util.ValidationUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -39,57 +40,90 @@ public class RegisterController extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			UserModel userModel = extractUserModel(req);
-			
-			boolean isUploaded = uploadImage(req);
-			if (!isUploaded) {
-				System.out.println("1");
-				handleError(req, resp, "Failed to upload profile image. Please try again.");
-				return;
-			}
-			
-			Boolean isAdded = registerService.addUser(userModel);
+	 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            // Extract and validate parameters
+            String number = req.getParameter("userNumber");
+            String userName = req.getParameter("Name");
+            String dobStr = req.getParameter("dob");
+            String gender = req.getParameter("gender");
+            String email = req.getParameter("email");
+            String password = req.getParameter("password");
+            String retypePassword = req.getParameter("retypePassword");
 
-			if (isAdded == null){
-				handleError(req, resp, "Our server is under maintenance. Please try again later!");
+            // Validation
+            if (ValidationUtil.isEmpty(userName) || !ValidationUtil.isNameValid(userName)) {
+                handleError(req, resp, "Invalid name. Only letters and spaces allowed.");
+                return;
+            }
 
-			} else if(!isAdded){
-				handleError(req, resp, "Could not register your account. Please try again later!");
-			}else {
-			//Upon successful registration
-			resp.sendRedirect(req.getContextPath() + "/login");
-			}
-		} catch (Exception e) {
-			handleError(req, resp, "An unexpected error occurred. Please try again later!");
-			e.printStackTrace(); // Log the exception
-		}
-	}
+            if (ValidationUtil.isEmpty(email) || !ValidationUtil.isEmailValid(email)) {
+                handleError(req, resp, "Invalid email format.");
+                return;
+            }
+
+            if (ValidationUtil.isEmpty(password) || !ValidationUtil.isPasswordStrong(password)) {
+                handleError(req, resp, "Password must be at least 6 characters.");
+                return;
+            }
+
+            if (!password.equals(retypePassword)) {
+                handleError(req, resp, "Passwords do not match.");
+                return;
+            }
+
+            if (!ValidationUtil.isPhoneValid(number)) {
+                handleError(req, resp, "Invalid phone number.");
+                return;
+            }
+
+            if (ValidationUtil.isEmpty(dobStr)) {
+                handleError(req, resp, "Date of birth is required.");
+                return;
+            }
+
+            if (ValidationUtil.isEmpty(gender)) {
+                handleError(req, resp, "Please select a gender.");
+                return;
+            }
+
+            LocalDate dob = LocalDate.parse(dobStr);
+
+            // Encrypt password
+            String encryptedPassword = PasswordUtil.encrypt(userName, password);
+
+            // Upload image
+            Part image = req.getPart("image");
+            String imageUrl = imageUtil.getImageNameFromPart(image);
+            boolean isUploaded = imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "user");
+            if (!isUploaded) {
+                handleError(req, resp, "Failed to upload profile image. Try again.");
+                return;
+            }
+
+            // Prepare user model
+            UserModel userModel = new UserModel(
+                    number, userName, email, gender, "user",
+                    encryptedPassword, dob, imageUrl
+            );
+
+            // Save user
+            Boolean isAdded = registerService.addUser(userModel);
+            if (isAdded == null) {
+                handleError(req, resp, "Server is under maintenance. Try again later.");
+            } else if (!isAdded) {
+                handleError(req, resp, "Could not register your account. Try again later.");
+            } else {
+                req.getSession().setAttribute("success", "Registration successful. You can now log in!");
+                resp.sendRedirect(req.getContextPath() + "/login");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Log error
+            handleError(req, resp, "An unexpected error occurred. Please try again.");
+        }
+    }
 	
-	private UserModel extractUserModel(HttpServletRequest req) throws Exception {
-		String number = req.getParameter("userNumber");
-		String userName = req.getParameter("Name");
-		LocalDate dob = LocalDate.parse(req.getParameter("dob"));
-		String gender = req.getParameter("gender");
-		String email = req.getParameter("email");
-		String role = "user";
-
-		String password = req.getParameter("password");
-		String retypePassword = req.getParameter("retypePassword");
-		
-		if (password == null || !password.equals(retypePassword)) {
-			throw new Exception("Passwords do not match or are invalid.");
-			
-		}
-		
-		password = PasswordUtil.encrypt(userName, password);
-		
-		Part image = req.getPart("image");
-		String imageUrl = imageUtil.getImageNameFromPart(image);
-		
-		return new UserModel(number, userName, email, gender, role, password, dob, imageUrl);	
-		} 
 	
 	private boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
 		Part image = req.getPart("image");

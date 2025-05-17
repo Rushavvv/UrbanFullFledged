@@ -1,74 +1,99 @@
-@charset "UTF-8";
+ body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
 .about {
-  text-align: center;
-  color: white;
-  padding: 40px 0;
-}
-
-.about hr {
-  height: 3px;
-  border-radius: 50px;
-  background-color: white;
-  border: none;
-}
-
-.about hr:first-of-type {
-  width: 848px;
-  margin-left: 590px;
-  margin-top: 40px;
-}
-
-.about hr:nth-of-type(2) {
-  width: 850px;
-  margin-left: 0px;
-  margin-top: 30px;
-}
-
-.about hr:nth-of-type(3) {
-  width: 848px;
-  margin-left: 590px;
-  margin-top: 40px;
-}
-
-.about hr:last-of-type {
-  width: 850px;
-  margin-left: 0px;
-  margin-top: 30px;
+    text-align: center;
 }
 
 .header {
-  font-size: 36px;
-  margin: 30px 0;
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 60px;
+    position: relative;
+    display: inline-block;
+}
+
+.header:after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: #fff;
+    margin: 15px auto 0;
 }
 
 .flex-container1 {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  margin-top: 40px;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-top: 40px;
 }
 
-.flex-container1 div {
-  text-align: center;
-  color: white;
-  font-size: 20px;
+.flex-container1 > div {
+    flex-basis: 280px;
+    transition: transform 0.3s ease;
+}
+
+.flex-container1 > div:hover {
+    transform: translateY(-10px);
 }
 
 .flex-container1 img {
-  height: 300px;
-  width: auto;
-  border-radius: 10px;
-  transition: transform 0.3s;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.flex-container1 img:hover {
-  transform: scale(1.05);
+
+.flex-container1 div {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    letter-spacing: 1px;
 }
 
-.flex-container1 a {
-  text-decoration: none;
-  color: white;
-  display: inline-block;
-  margin-top: 10px;
+.team-member-title {
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+.about-text {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    font-weight: 300;
+    color: #bbb;
+    line-height: 1.8;
+}
+
+.footer-links{
+	margin-left: 850px;
+	align-items: center;
+}
+
+@media (max-width: 768px) {
+    .flex-container1 {
+        gap: 40px;
+    }
+    
+    .header {
+        font-size: 2rem;
+    }
 }
