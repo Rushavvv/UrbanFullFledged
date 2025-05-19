@@ -33,13 +33,23 @@ public class AdminDashboardController extends HttpServlet {
  	    int totalUsers = dashboardService.getTotalUsers();
 		int totalRevenue = dashboardService.getTotalRevenue();
 		int activeProducts = dashboardService.getActiveProducts();
+		int outOfStock = dashboardService.getOutOfStockProducts();
+		int profitMargin = dashboardService.getAverageOrderValue();
+		int totalOrders = dashboardService.getTotalOrders();
 
+
+		
 		List<UserModel> recentUsers = dashboardService.getAllUserInfo();
 
 		request.setAttribute("totalUsers", totalUsers);
 		request.setAttribute("totalRevenue", totalRevenue);
 		request.setAttribute("activeProducts", activeProducts);
 		request.setAttribute("recentUsers", recentUsers);
+		request.setAttribute("outOfStock", outOfStock);
+		request.setAttribute("profitMargin", profitMargin);
+		request.setAttribute("totalOrders", totalOrders);
+
+
 		
 		String action = request.getParameter("action");
 	    String userEmail = request.getParameter("userEmail");

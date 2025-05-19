@@ -34,14 +34,15 @@
                     <strong>Your Email:</strong> <c:out value="${user.userEmail}" /><br>
                     <strong>Your Phone Number:</strong> <c:out value="${user.userNumber}" /><br>
                 </h2>
-			</div>
-			
-	<%-- 		<div class="action-buttons">
-		      	<a href= "${contextPath}/editProfile">
+                <div class="action-buttons">
+		      	<a href= "${pageContext.request.contextPath}/editProfile">
 		        <button class="action-btn primary">Edit Profile</button>
 		        </a>
-	        </div> --%>
-        </div>
+			        </div> 
+		        </div>
+			</div>
+			
+			
 
     </div>
 </body>

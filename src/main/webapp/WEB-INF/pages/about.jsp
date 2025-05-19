@@ -20,7 +20,7 @@
             <h2 class="header">MEET THE TEAM</h2>
             
             <div class="about-text">
-                We are a collective of visionaries, creators, and storytellers. United by our passion for visual artistry, we transform moments into timeless imagery that captivates and inspires.
+                We are a collective of visionaries, creators, and storytellers. United by our passion for cameras, we transform moments into timeless pictures.
             </div>
             
             <div class="flex-container1">

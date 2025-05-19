@@ -26,94 +26,29 @@
         </header>
 
         <!-- Products Grid -->
-        <div class="products-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img src="${pageContext.request.contextPath}/resources/images/product1.jpg" alt="Fine Art Print" class="product-image">
-                <div class="product-details">
-                    <div class="product-category">Prints</div>
-                    <h3 class="product-title">Rode Mic 360</h3>
-                    <p class="product-description">Rode mic 360 best sound quality 320 Hz with dual channel.</p>
-                    <div class="product-price">Rs. 12000</div>
-                    <div class="product-footer">
-                        <span class="product-availability">In Stock</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img src="${pageContext.request.contextPath}/resources/images/product2.jpg" alt="Metal Print" class="product-image">
-                <div class="product-details">
-                    <div class="product-category">Prints</div>
-                    <h3 class="product-title">Metal Print</h3>
-                    <p class="product-description">Stunning metal prints with vibrant colors and exceptional durability.</p>
-                    <div class="product-price">Rs. 18000</div>
-                    <div class="product-footer">
-                        <span class="product-availability">In Stock</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="${pageContext.request.contextPath}/resources/images/product3.jpg" alt="Framed Print" class="product-image">
-                <div class="product-details">
-                    <div class="product-category">Prints</div>
-                    <h3 class="product-title">Framed Gallery Print</h3>
-                    <p class="product-description">Custom framed prints with acid-free mats and premium hardwood frames.</p>
-                    <div class="product-price">Rs. 25000</div>
-                    <div class="product-footer">
-                        <span class="product-availability">In Stock</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Product 4 -->
-            <div class="product-card">
-                <img src="${pageContext.request.contextPath}/resources/images/product4.jpg" alt="Digital License" class="product-image">
-                <div class="product-details">
-                    <div class="product-category">Digital</div>
-                    <h3 class="product-title">Commercial License</h3>
-                    <p class="product-description">Commercial usage license for selected high-resolution digital images.</p>
-                    <div class="product-price">Rs. 35000</div>
-                    <div class="product-footer">
-                        <span class="product-availability">Digital Download</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Product 5 -->
-            <div class="product-card">
-                <img src="${pageContext.request.contextPath}/resources/images/product5.jpg" alt="Photo Session" class="product-image">
-                <div class="product-details">
-                    <div class="product-category">Services</div>
-                    <h3 class="product-title">Portrait Session</h3>
-                    <p class="product-description">Professional portrait photography session with digital delivery.</p>
-                    <div class="product-price">Rs. 45000</div>
-                    <div class="product-footer">
-                        <span class="product-availability">Available</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Product 6 -->
-            <div class="product-card">
-                <img src="${pageContext.request.contextPath}/resources/images/product6.jpg" alt="Photography Course" class="product-image">
-                <div class="product-details">
-                    <div class="product-category">Services</div>
-                    <h3 class="product-title">Photography Workshop</h3>
-                    <p class="product-description">Hands-on photography workshop for all skill levels with field sessions.</p>
-                    <div class="product-price">Rs. 27500</div>
-                    <div class="product-footer">
-                        <span class="product-availability">Limited Spots</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
+	        <div class="products-grid">
+		    <c:forEach var="product" items="${products}">
+		        <div class="product-card">
+		            <img src="${pageContext.request.contextPath}/resources/images/product${product.productId}.jpg"
+		                 alt="${product.productName}" class="product-image">
+		            <div class="product-details">
+		                <div class="product-category">Category</div>
+		                <h3 class="product-title">${product.productName}</h3>
+		                <p class="product-description">Static product description here</p>
+		                <div class="product-price">Rs. ${product.productPrice}</div>
+		                <div class="product-footer">
+		                    <span class="product-availability">
+		                        <c:choose>
+		                            <c:when test="${product.inStock > 0}">In Stock</c:when>
+		                            <c:otherwise>Out of Stock</c:otherwise>
+		                        </c:choose>
+		                    </span>
+		                </div>
+		            </div>
+		        </div>
+		    </c:forEach>
+		</div>
+	</div>
       <jsp:include page="footer.jsp"/>
     
 </body>

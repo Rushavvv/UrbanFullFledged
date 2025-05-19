@@ -46,6 +46,32 @@
           </div>
         </div>
         
+        <div class="stat-card">
+          <h3>OUT OF STOCK</h3>
+		  <div class="value"><c:out value="${outOfStock}" /></div>
+          <div class="trend down">
+            <span>Products Currently Out Of Stock</span>
+            <img class="image3" src="${pageContext.request.contextPath}/resources/images/dashboardImg5.jpg" alt="Camera2">
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <h3>Expected Profits</h3>
+		  <div class="value">Rs. <c:out value="${profitMargin}"/></div>
+          <div class="trend down">
+            <span>Expected Profit Margin This Month</span>
+            <img class="image3" src="${pageContext.request.contextPath}/resources/images/dashboardImg4.jpg" alt="Camera2">
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <h3>Total Orders</h3>
+		  <div class="value"><c:out value="${totalOrders}" /></div>
+          <div class="trend down">
+            <span>Total Orders This Month</span>
+            <img class="image3" src="${pageContext.request.contextPath}/resources/images/dashboardImg6.jpg" alt="Camera2">
+          </div>
+        </div>
         
     </div>
     

@@ -3,7 +3,6 @@ package com.urban.filter;
 import java.io.IOException;
 
 import com.urban.util.CookiesUtil;
-import com.urban.service.LoginService;
 import com.urban.util.SessionUtil;
 
 import jakarta.servlet.Filter;
@@ -34,6 +33,7 @@ public class AuthenticationFilter implements Filter {
 	private static final String ADDPRODUCT = "/addProduct";
 	private static final String EDITPRODUCT = "/editProduct";
 	private static final String PRODUCTSPAGE = "/productsPage";
+	private static final String EDITPROFILE = "/editProfile";
 
 
 
@@ -77,7 +77,7 @@ public class AuthenticationFilter implements Filter {
 			// Customer is logged in
 			if (uri.endsWith(LOGIN) || uri.endsWith(REGISTER)) {
 				res.sendRedirect(req.getContextPath() + HOME);
-			} else if (uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ABOUT) || uri.endsWith(PROFILE) || uri.endsWith(PRODUCTSPAGE)) {
+			} else if (uri.endsWith(HOME) || uri.endsWith(ROOT) || uri.endsWith(ABOUT) || uri.endsWith(PROFILE) || uri.endsWith(PRODUCTSPAGE) || uri.endsWith(EDITPROFILE)) {
 				chain.doFilter(request, response);
 			
 			} else {

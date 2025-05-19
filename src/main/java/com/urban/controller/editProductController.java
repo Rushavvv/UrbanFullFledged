@@ -27,6 +27,8 @@ public class editProductController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("EditProfileController GET called");
+
 		request.getRequestDispatcher("WEB-INF/pages/editProduct.jsp").forward(request, response);
 	}
 

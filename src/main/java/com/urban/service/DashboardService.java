@@ -181,5 +181,72 @@ public class DashboardService {
 		}
 	}
 
+	public boolean updateUserProfile(String userName, String userNumber, String userEmail, String password, String imagePath) {
+	    if (isConnectionError)
+	        return false;
+
+	    String sql = "UPDATE User SET userNumber = ?, userEmail = ?, password = ?, image_path = ? WHERE userName = ?";
+	    try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
+	        stmt.setString(1, userNumber);
+	        stmt.setString(2, userEmail);
+	        stmt.setString(3, password); // You can hash it before saving
+	        stmt.setString(4, imagePath);
+	        stmt.setString(5, userName);
+
+	        int rowsUpdated = stmt.executeUpdate();
+	        return rowsUpdated > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
+	public int getOutOfStockProducts() {
+		if (isConnectionError) return 0;
+
+		String query = "SELECT COUNT(*) AS total FROM Products WHERE inStock = 0";
+		try (PreparedStatement stmt = dbConn.prepareStatement(query);
+			 ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public int getAverageOrderValue() {
+		if (isConnectionError) return 0;
+
+		String query = "SELECT AVG(totalPrice) AS avgOrder FROM Sales";
+		try (PreparedStatement stmt = dbConn.prepareStatement(query);
+			 ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt("avgOrder");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public int getTotalOrders() {
+	    int totalOrders = 0;
+	    String sql = "SELECT COUNT(*) FROM Sales";
+
+	    try (
+	         PreparedStatement stmt = dbConn.prepareStatement(sql);
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        if (rs.next()) {
+	            totalOrders = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return totalOrders;
+	}
 
 }

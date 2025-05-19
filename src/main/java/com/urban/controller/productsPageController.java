@@ -6,6 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
+import com.urban.model.ProductsModel;
+import com.urban.service.ControlService;
 
 /**
  * Servlet implementation class productsPageController
@@ -27,6 +31,10 @@ public class productsPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		ControlService products = new ControlService();
+
+		List<ProductsModel> productlist = products.getAllProductDetails();
+		request.setAttribute("products", productlist);
 		request.getRequestDispatcher("WEB-INF/pages/productsPage.jsp").forward(request, response);
 	}
 
