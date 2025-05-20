@@ -181,15 +181,15 @@ public class DashboardService {
 		}
 	}
 
-	public boolean updateUserProfile(String userName, String userNumber, String userEmail, String password, String imagePath) {
+	public boolean updateUserProfile(String userName, String userEmail, String userNumber, String password, String imagePath) {
 	    if (isConnectionError)
 	        return false;
 
-	    String sql = "UPDATE User SET userNumber = ?, userEmail = ?, password = ?, image_path = ? WHERE userName = ?";
+	    String sql = "UPDATE User SET userEmail = ?, userNumber = ?, password = ?, image_path = ? WHERE userName = ?";
 	    try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
-	        stmt.setString(1, userNumber);
-	        stmt.setString(2, userEmail);
-	        stmt.setString(3, password); // You can hash it before saving
+	        stmt.setString(1, userEmail);
+	        stmt.setString(2, userNumber);
+	        stmt.setString(3, password); 
 	        stmt.setString(4, imagePath);
 	        stmt.setString(5, userName);
 
